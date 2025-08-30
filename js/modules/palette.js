@@ -105,7 +105,6 @@ export const module_palette = {
   enabled: false,
   params: [
     { label: "Number of Colors", type: "range", min: 2, max: 32, step: 1, value: 4 },
-    { label: "Calculate Color Palette", type: "button", id: "calculate_palette", value: "Calculate Color Palette" }
   ],
   centroids: [],
   paletteContainer: null,
