@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VisuRef - Visualize Reference Images</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <div class="header-brand">
+        <img src="banner.png" alt="VisuRef Logo" class="header-logo">
+        <p class="header-subtitle">the artist’s wingman for sketching studies</p>
+      </div>
+      <nav class="nav-links">
+        <a href="#" class="nav-link active" id="nav-app">App</a>
+        <a href="#" class="nav-link" id="nav-about">About</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div class="main-content" id="app-content">
+    <div id="sidebar">
+      <div class="sidebar-header">
+        <h3 class="sidebar-title">Image Pipeline</h3>
+        <p class="sidebar-subtitle">Configure your processing modules</p>
+      </div>
+      <div class="pipeline-container">
+        <div class="pipeline-line" id="pipelineLine"></div>
+        <div id="modules"></div>
+      </div>
+      <div class="export-section">
+        <button id="exportBtn" class="export-button">
+          <span class="export-icon">💾</span>
+          Export Image
+        </button>
+      </div>
+    </div>
+    <div id="main">
+      <div class="image-selection-mode" id="imageSelectionMode">
+        <div class="selection-areas">
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Upload an Image</div>
+            <div class="upload-subtext">Click or drag and drop an image to get started</div>
+            <input type="file" id="fileInput" accept="image/*">
+          </div>
+          
+          <div class="reference-gallery" id="referenceGallery">
+            <div class="upload-icon">🖼️</div>
+            <div class="upload-text">Reference Gallery</div>
+            <div class="upload-subtext">Browse our collection of reference images</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gallery Modal -->
+      <div id="galleryModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Reference Images</h2>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="gallery-grid" id="galleryGrid">
+              <!-- Reference images will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <canvas id="canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- About Page -->
+  <div class="about-page" id="about-content">
+    <h2>About VisuRef</h2>
+    <p>
+      VisuRef is a powerful web-based tool designed specifically for artists, illustrators, and painters 
+      who need to analyze and manipulate reference images. Whether you're studying composition, 
+      analyzing color palettes, or preparing reference materials for your artwork, VisuRef provides 
+      the tools you need to enhance your creative process.
+    </p>
+    
+    <div class="features">
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>Image Filters:</strong> Apply various filters like grayscale and brightness adjustments to analyze different aspects of your reference images</li>
+        <li><strong>Real-time Processing:</strong> See changes instantly as you adjust parameters</li>
+        <li><strong>Modular Design:</strong> Enable or disable different effects to focus on specific aspects of your reference</li>
+        <li><strong>Easy Upload:</strong> Simply drag and drop or select images from your device</li>
+        <li><strong>Responsive Interface:</strong> Works seamlessly on desktop and tablet devices</li>
+        <li><strong>No Installation Required:</strong> Runs entirely in your web browser</li>
+      </ul>
+    </div>
+    
+    <p>
+      VisuRef is perfect for artists who want to:
+    </p>
+    <ul>
+      <li>Study the tonal values in reference images by converting them to grayscale</li>
+      <li>Analyze composition and lighting by adjusting brightness and contrast</li>
+      <li>Prepare reference materials for traditional or digital painting</li>
+      <li>Understand color relationships and value structures</li>
+      <li>Create study materials for art classes or workshops</li>
+    </ul>
+    
+    <p>
+      The tool is designed with simplicity in mind, allowing you to focus on your artistic analysis 
+      rather than complex software interfaces. Whether you're a beginner artist learning the fundamentals 
+      or an experienced professional refining your technique, VisuRef provides the tools you need to 
+      enhance your reference image analysis workflow.
+    </p>
+  </div>
+
+  <script src="js/modules/color.js" type="module"></script>
+  <script src="js/modules/crop.js" type="module"></script>
+  <script src="js/modules/grid.js" type="module"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>
