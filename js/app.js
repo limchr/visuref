@@ -43,7 +43,14 @@ const referenceImages = [
   { filename: 'sunset-410133_960_720.jpg', name: 'Sunset Landscape' },
   { filename: 'sunset-5800386_960_720.jpg', name: 'Sunset Horizon' },
   { filename: 'boat-9322331_960_720.jpg', name: 'Boat Scene' },
-  { filename: 'dawn-8412840_960_720.jpg', name: 'Dawn Landscape' }
+  { filename: 'dawn-8412840_960_720.jpg', name: 'Dawn Landscape' },
+  { filename: 'own/two_apples.jpg', name: 'Two Apples' },
+  { filename: 'own/every_vegetable.jpg', name: 'Fruits and Vegetables' },
+  { filename: 'own/onion_ginger.jpg', name: 'Ginger and Onion' },
+  { filename: 'own/single_apple.jpg', name: 'Red Apple' },
+  { filename: 'own/side_boob.jpg', name: 'Statue Side' },
+  { filename: 'own/frontal_boob.jpg', name: 'Statue Frontal' },
+  { filename: 'own/rear_view.jpg', name: 'Statue Rear' },
 ];
 
 
