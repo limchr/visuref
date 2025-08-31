@@ -1,11 +1,18 @@
-// modules/palette.js - K-means color palette extraction
 
 // K-means clustering implementation
 function kMeans(data, k, maxIterations = 100) {
   // Initialize centroids randomly
   let centroids = [];
+
+  var seed = 1337;
+  function random() {
+      var x = Math.sin(seed++) * 10000;
+      return x - Math.floor(x);
+  }
+  
+
   for (let i = 0; i < k; i++) {
-    const randomIndex = Math.floor(Math.random() * data.length);
+    const randomIndex = Math.floor(random() * data.length);
     centroids.push([...data[randomIndex]]);
   }
   

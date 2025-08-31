@@ -261,8 +261,10 @@ function createModuleUI(module) {
         });
       }, 100);
     }
-    
-    render(); 
+
+    // let previous_enabled_module = get_previous_enabled_module(module.title);
+    render(module.title);
+
   };
   
   const slider = document.createElement('span');
@@ -314,7 +316,7 @@ function createModuleUI(module) {
         input.max = param.max;
         input.step = param.step;
       }
-      input.oninput = () => { param.value = input.type === 'checkbox' ? input.checked : Number(input.value); render(); };
+      input.oninput = () => { param.value = input.type === 'checkbox' ? input.checked : Number(input.value); render(module.title); };
       label.appendChild(input);
     }
     
@@ -469,10 +471,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+let module_outputs = {};
 
+
+function get_previous_enabled_module(module_title) {
+  let last_module = null;
+  modules.forEach(m => {
+    if (m.title == module_title) {
+      return last_module;
+    }
+    if(m.enabled) last_module = m.title;
+  });
+  return null; // no module before is enabled
+}
 
 // Render pipeline
-function render() {
+function render(render_from) {
   if (!originalImage) return;
   
   // Set canvas internal resolution to match display size
@@ -488,14 +502,28 @@ function render() {
   
   let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
+  let render_enabled = true;
+  if(render_from) render_enabled = false;
+
   modules.forEach(m => {
-    if (m.enabled) {
+    if (render_from == m.title) {
+      render_enabled = true;
+    } 
+    if (render_enabled && m.enabled) {
       // Pass canvas to modules that need it (like Grid and Crop)
       if (m.title === 'Grid' || m.title === 'Crop') {
         imageData = m.apply(imageData, m.params, canvas);
       } else {
         imageData = m.apply(imageData, m.params);
       }
+      module_outputs[m.title] = new ImageData(
+        new Uint8ClampedArray(imageData.data), // deep copy
+        imageData.width,
+        imageData.height
+      );
+      render_enabled = true;
+    } else if(m.enabled) {
+      imageData = module_outputs[m.title];
     }
   });
   ctx.putImageData(imageData, 0, 0);
