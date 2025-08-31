@@ -487,6 +487,7 @@ function get_previous_enabled_module(module_title) {
 
 // Render pipeline
 function render(render_from) {
+  render_from = null;
   if (!originalImage) return;
   
   // Set canvas internal resolution to match display size
