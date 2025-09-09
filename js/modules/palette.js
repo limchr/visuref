@@ -109,9 +109,10 @@ function rgbToHex(r, g, b) {
 // Create palette module
 export const module_palette = {
   title: "Palette",
+  icon: '🎨',
   enabled: false,
   params: [
-    { label: "Number of Colors", type: "range", min: 2, max: 32, step: 1, value: 4 },
+    { label: "Colors", type: "range", min: 2, max: 32, step: 1, value: 4 },
   ],
   centroids: [],
   paletteContainer: null,

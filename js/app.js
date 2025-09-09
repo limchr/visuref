@@ -7,8 +7,6 @@ const modulesDiv = document.getElementById('modules');
 const uploadArea = document.getElementById('uploadArea');
 const referenceGallery = document.getElementById('referenceGallery');
 const galleryGrid = document.getElementById('galleryGrid');
-const uploadTab = document.getElementById('uploadTab');
-const galleryTab = document.getElementById('galleryTab');
 const imageSelectionMode = document.getElementById('imageSelectionMode');
 const exportBtn = document.getElementById('exportBtn');
 const galleryModal = document.getElementById('galleryModal');
@@ -89,6 +87,11 @@ function showAbout() {
   navAbout.classList.add('active');
   navApp.classList.remove('active');
 }
+
+window.addEventListener('resize', function(event) {
+  resizeCanvasToFit();
+}, true);
+
 
 // Navigation event listeners
 navApp.addEventListener('click', (e) => {
@@ -238,11 +241,6 @@ function createModuleUI(module) {
   container.className = 'module';
   container.dataset.moduleId = module.title.toLowerCase().replace(/\s+/g, '-');
 
-  // Status indicator
-  const statusIndicator = document.createElement('div');
-  statusIndicator.className = 'module-status';
-  container.appendChild(statusIndicator);
-
   // Module header with toggle switch
   const header = document.createElement('div');
   header.className = 'module-header';
@@ -289,7 +287,7 @@ function createModuleUI(module) {
   // Module icon
   const icon = document.createElement('div');
   icon.className = 'module-icon';
-  icon.textContent = getModuleIcon(module.title);
+  icon.textContent = module.icon;
   
   title.appendChild(icon);
   title.appendChild(document.createTextNode(module.title));
@@ -305,16 +303,46 @@ function createModuleUI(module) {
   
   // Params UI
   module.params.forEach(param => {
-    const label = document.createElement('label');
-    label.textContent = param.label;
+    let element = null;
+    
     
     if (param.type === 'button') {
-      const button = document.createElement('button');
-      button.textContent = param.value;
-      button.className = 'module-button';
-      button.id = param.id;
-      label.appendChild(button);
+      element = document.createElement('button');
+      element.textContent = param.value;
+      element.className = 'module-button';
+      element.id = param.id;
     } else {
+      element = document.createElement('label');
+      element.className = 'param-label';
+      element.style.cssText = 'display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;';
+      
+      // Label text
+      const labelText = document.createElement('span');
+      labelText.textContent = param.label;
+      element.appendChild(labelText);
+      
+      // Value input field (for range inputs only)
+      if (param.type === "range") {
+        const valueInput = document.createElement('input');
+        valueInput.type = 'number';
+        valueInput.value = param.value;
+        valueInput.min = param.min;
+        valueInput.max = param.max;
+        valueInput.step = param.step;
+        valueInput.style.cssText = 'width: 40px; margin-left: 5px; text-align: right; padding: 2px 4px; border: 1px solid #ccc; border-radius: 3px;';
+        valueInput.oninput = () => { 
+          param.value = Number(valueInput.value); 
+          // Update the range slider to match
+          const rangeInput = element.querySelector('input[type="range"]');
+          if (rangeInput) {
+            rangeInput.value = param.value;
+          }
+          render(module.title); 
+        };
+        element.appendChild(valueInput);
+      }
+      
+      // Range input
       const input = document.createElement('input');
       input.type = param.type;
       input.value = param.value;
@@ -322,21 +350,27 @@ function createModuleUI(module) {
         input.min = param.min;
         input.max = param.max;
         input.step = param.step;
+        input.style.cssText = 'flex: 1; margin-left: 5px;';
+        input.oninput = () => { 
+          param.value = Number(input.value); 
+          // Update the number input to match
+          const numberInput = element.querySelector('input[type="number"]');
+          if (numberInput) {
+            numberInput.value = param.value;
+          }
+          render(module.title); 
+        };
+      } else {
+        input.oninput = () => { param.value = input.type === 'checkbox' ? input.checked : Number(input.value); render(module.title); };
       }
-      input.oninput = () => { param.value = input.type === 'checkbox' ? input.checked : Number(input.value); render(module.title); };
-      label.appendChild(input);
+      element.appendChild(input);
     }
-    
-    paramsContainer.appendChild(label);
-    paramsContainer.appendChild(document.createElement('br'));
+    if(element) {
+      paramsContainer.appendChild(element);
+    }
   });
   
   container.appendChild(paramsContainer);
-
-  // Pipeline node
-  const node = document.createElement('div');
-  node.className = 'pipeline-node';
-  container.appendChild(node);
 
   // Set initial active state
   updateModuleActiveState(container, module.enabled);
@@ -345,24 +379,6 @@ function createModuleUI(module) {
   
   // Call onUICreated if module has it
   if(module && module.onUICreated) module.onUICreated(container);
-}
-
-// Get module icon based on title
-function getModuleIcon(title) {
-  const icons = {
-    'Grayscale': '⚫',
-    'Brightness': '☀️',
-    'Contrast': '🌓',
-    'Saturation': '🎨',
-    'Grid': '🔲',
-    'Crop': '✂️',
-    'Palette': '🎨',
-    'Blur': '💫',
-    'Sharpen': '🔪',
-    'Invert': '🔄',
-    'Sepia': '📷'
-  };
-  return icons[title] || '⚙️';
 }
 
 // Update module active state

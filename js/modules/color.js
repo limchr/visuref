@@ -35,8 +35,11 @@ function hsvToRgb(h, s, v) {
   ];
 }
 
+
+
 const module_greyscale = {
   title: "Grayscale",
+  icon: '⚫',
   enabled: false,
   params: [
     { label: "Red",   type: "range", min: -100, max: 100, step: 1, value: 0 },
@@ -85,6 +88,7 @@ const module_greyscale = {
 
 const module_brightness = {
   title: "Brightness",
+  icon: '☀️',
   enabled: false,
   params: [
     { label: "Level", type: "range", min: -250, max: 250, step: 1, value: 0 }
@@ -102,6 +106,7 @@ const module_brightness = {
 };
 const module_contrast = {
   title: "Contrast",
+  icon: '🌓',
   enabled: false,
   params: [
     { label: "Level", type: "range", min: -250, max: 250, step: 1, value: 0 }
@@ -119,6 +124,7 @@ const module_contrast = {
 };
 const module_saturation = {
   title: "Saturation",
+  icon: '🔥',
   enabled: false,
   params: [
     { label: "Level", type: "range", min: -250, max: 250, step: 1, value: 0 }

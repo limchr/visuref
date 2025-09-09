@@ -1,5 +1,6 @@
 const module_grid = {
     title: "Grid",
+    icon: '🔲',
     enabled: false,
     params: [
       { label: "Grid Lines", type: "range", min: 10, max: 400, step: 1, value: 50 },

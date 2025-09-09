@@ -5,6 +5,7 @@ const ctx = canvas.getContext('2d');
 
 let module_crop = {
     title: "Crop",
+    icon: '✂️',
     enabled: false,
     params: [
       { label: "Crop", type: "button", id: "crop_button", value: "Select Area" }
