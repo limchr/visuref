@@ -65,6 +65,8 @@ function kMeans(data, k, maxIterations = 100) {
       // Check if centroid changed
       if (euclideanDistance(newCentroid, centroids[i]) > 0.1) {
         centroidsChanged = true;
+      } else {
+        console.log("Converged after " + iterations + " iterations");
       }
     }
     
@@ -133,11 +135,12 @@ export const module_palette = {
       const g = data[i + 1];
       const b = data[i + 2];
       
-      // Skip if this color is already in our sample
-      const colorKey = `${r},${g},${b}`;
-      if (!colors.some(color => `${color[0]},${color[1]},${color[2]}` === colorKey)) {
-        colors.push([r, g, b]);
-      }
+      colors.push([r, g, b]);
+      // // Skip if this color is already in our sample
+      // const colorKey = `${r},${g},${b}`;
+      // if (!colors.some(color => `${color[0]},${color[1]},${color[2]}` === colorKey)) {
+      //   colors.push([r, g, b]);
+      // }
     }
     
     // If we have fewer unique colors than k, use all colors
