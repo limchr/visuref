@@ -23,6 +23,7 @@
       </div>
       <nav class="nav-links">
         <a href="#" class="nav-link active" id="nav-app">App</a>
+        <a href="#" class="nav-link" id="nav-course">Course</a>
         <a href="#" class="nav-link" id="nav-about">About</a>
       </nav>
     </div>
@@ -80,6 +81,49 @@
       </div>
       
       <canvas id="canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Course Page -->
+  <div class="course-page" id="course-content">
+    <div class="course-container">
+      <div class="course-sidebar">
+        <h2>Drawing Course</h2>
+        <div class="course-lessons">
+          <div class="lesson-item active" data-lesson="01-basics">
+            <span class="lesson-number">01</span>
+            <span class="lesson-title">Drawing Basics</span>
+          </div>
+          <div class="lesson-item" data-lesson="02-proportions-perspective">
+            <span class="lesson-number">02</span>
+            <span class="lesson-title">Proportions & Perspective</span>
+          </div>
+          <div class="lesson-item" data-lesson="03-light-shadow-value">
+            <span class="lesson-number">03</span>
+            <span class="lesson-title">Light, Shadow & Value</span>
+          </div>
+          <div class="lesson-item" data-lesson="04-anatomy-nature">
+            <span class="lesson-number">04</span>
+            <span class="lesson-title">Anatomy & Nature</span>
+          </div>
+          <div class="lesson-item" data-lesson="05-style-creativity">
+            <span class="lesson-number">05</span>
+            <span class="lesson-title">Style & Creativity</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-content">
+        <div class="course-header">
+          <h1 id="course-title">Drawing Basics</h1>
+          <div class="course-navigation">
+            <button id="prev-lesson" class="nav-button" disabled>← Previous</button>
+            <button id="next-lesson" class="nav-button">Next →</button>
+          </div>
+        </div>
+        <div class="course-text" id="course-text">
+          <!-- Course content will be loaded here -->
+        </div>
+      </div>
     </div>
   </div>
 
