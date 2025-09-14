@@ -5,7 +5,8 @@ const module_grid = {
     params: [
       { label: "Grid Lines", type: "range", min: 10, max: 400, step: 1, value: 50 },
       { label: "Shift X", type: "range", min: -100, max: 100, step: 1, value: 0 },
-      { label: "Shift Y", type: "range", min: -100, max: 100, step: 1, value: 0 }
+      { label: "Shift Y", type: "range", min: -100, max: 100, step: 1, value: 0 },
+      { label: "Line Color", type: "range", min: 0, max: 360, step: 1, value: 0 },
     ],
     apply: (imageData, params, canvas) => {
       const ctx = canvas.getContext('2d');
@@ -20,8 +21,13 @@ const module_grid = {
       const shiftX = params[1].value / 100 * gridLines;
       const shiftY = params[2].value / 100 * gridLines;
       
-      ctx.strokeStyle = 'rgba(133, 17, 17, 0.8)';
-      ctx.lineWidth = 1.5;
+      const lineColor = `hsl(${params[3].value}, 70%, 50%)`;
+    
+      ctx.strokeStyle = lineColor;
+  
+
+      // ctx.strokeStyle = 'rgba(133, 17, 17, 0.8)';
+      ctx.lineWidth = 2;
       
       // Draw vertical lines
       for (let i = 0; i <= width-shiftX; i=i+gridLines) {

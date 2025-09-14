@@ -25,6 +25,7 @@ let galleryLoaded = false;
 
 // Reference images data
 const referenceImages = [
+  { filename: 'own/simple_shapes/3_shapes.png', name: 'Rendering of Simple Shapes' },
   { filename: 'man-844212_640.jpg', name: 'Portrait Study' },
   { filename: 'woman-3063914_640.jpg', name: 'Female Portrait' },
   { filename: 'woman-5815354_640.jpg', name: 'Woman Portrait' },
@@ -69,9 +70,12 @@ import {
 import { 
   module_palette, 
 } from "./modules/palette.js";
+import { 
+  module_measure, 
+} from "./modules/measure.js";
 
 
-let modules = [module_crop, module_brightness, module_contrast, module_saturation, module_greyscale, module_palette, module_grid];
+let modules = [module_crop, module_brightness, module_contrast, module_saturation, module_greyscale, module_palette, module_grid, module_measure];
 
 
 
@@ -206,7 +210,7 @@ navApp.addEventListener('click', (e) => {
   showApp();
 });
 
-navCourse.addEventListener('click', (e) => {
+if(navCourse) navCourse.addEventListener('click', (e) => {
   e.preventDefault();
   showCourse();
 });
@@ -276,8 +280,8 @@ function resizeCanvasToFit() {
   if (!originalImage) return;
   
   const mainContainer = document.getElementById('main');
-  const containerWidth = mainContainer.clientWidth - 40; // Account for padding
-  const containerHeight = mainContainer.clientHeight - 40; // Account for padding
+  const containerWidth = mainContainer.clientWidth - 10; // Account for padding
+  const containerHeight = mainContainer.clientHeight - 10; // Account for padding
   
   const imageAspectRatio = originalImage.width / originalImage.height;
   const containerAspectRatio = containerWidth / containerHeight;
@@ -595,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     modules.forEach(m => {
       if (m.enabled) {
-        if (m.title === 'Grid' || m.title === 'Crop') {
+        if (m.title === 'Grid' || m.title === 'Crop' || m.title === 'Measure') {
           imageData = m.apply(imageData, m.params, exportCanvas);
         } else {
           imageData = m.apply(imageData, m.params);
@@ -667,7 +671,7 @@ function render(render_from) {
     } 
     if (render_enabled && m.enabled) {
       // Pass canvas to modules that need it (like Grid and Crop)
-      if (m.title === 'Grid' || m.title === 'Crop') {
+      if (m.title === 'Grid' || m.title === 'Crop' || m.title === 'Measure') {
         imageData = m.apply(imageData, m.params, canvas);
       } else {
         imageData = m.apply(imageData, m.params);
