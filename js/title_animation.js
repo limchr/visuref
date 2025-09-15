@@ -44,7 +44,7 @@ function title_animate() {
 
         });
     });
-
+    setTimeout(title_animate,randint(2*60*1000,30*60*1000));
 
 }
 
