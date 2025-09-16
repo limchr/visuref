@@ -96,7 +96,7 @@ function showApp() {
   courseContent.style.display = 'none';
   aboutContent.style.display = 'none';
   navApp.classList.add('active');
-  navCourse.classList.remove('active');
+  if (navCourse) navCourse.classList.remove('active');
   navAbout.classList.remove('active');
 }
 
@@ -105,7 +105,7 @@ function showCourse() {
   courseContent.style.display = 'block';
   aboutContent.style.display = 'none';
   navApp.classList.remove('active');
-  navCourse.classList.add('active');
+  if (navCourse) navCourse.classList.add('active');
   navAbout.classList.remove('active');
   
   // Load the current lesson if not already loaded
@@ -119,7 +119,7 @@ function showAbout() {
   courseContent.style.display = 'none';
   aboutContent.style.display = 'block';
   navApp.classList.remove('active');
-  navCourse.classList.remove('active');
+  if (navCourse) navCourse.classList.remove('active');
   navAbout.classList.add('active');
 }
 
