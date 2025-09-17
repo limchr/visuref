@@ -23,36 +23,16 @@ const aboutContent = document.getElementById('about-content');
 let originalImage = null;
 let galleryLoaded = false;
 
-// Reference images data
-const referenceImages = [
-  { filename: 'own/simple_shapes/3_shapes.png', name: 'Rendering of Simple Shapes' },
-  { filename: 'man-844212_640.jpg', name: 'Portrait Study' },
-  { filename: 'woman-3063914_640.jpg', name: 'Female Portrait' },
-  { filename: 'woman-5815354_640.jpg', name: 'Woman Portrait' },
-  { filename: 'woman-8631993_960_720.jpg', name: 'Woman Portrait 2' },
-  { filename: 'woman-2789481_960_720.jpg', name: 'Woman Portrait 3' },
-  { filename: 'girl-2806276_960_720.jpg', name: 'Girl Portrait' },
-  { filename: 'man-6339003_960_720.jpg', name: 'Man Portrait' },
-  { filename: 'girl-2205813_960_720.jpg', name: 'Girl Portrait 2' },
-  { filename: 'mother-5374622_960_720.jpg', name: 'Mother Portrait' },
-  { filename: 'mountains-440520_960_720.jpg', name: 'Mountain Landscape' },
-  { filename: 'mountains-1913199_960_720.jpg', name: 'Mountain Range' },
-  { filename: 'mt-fuji-2232246_960_720.jpg', name: 'Mount Fuji' },
-  { filename: 'mountains-4420690_960_720.jpg', name: 'Mountain Peak' },
-  { filename: 'mountains-8344601_960_720.jpg', name: 'Mountain Vista' },
-  { filename: 'sunset-5536777_960_720.jpg', name: 'Sunset Sky' },
-  { filename: 'sunset-410133_960_720.jpg', name: 'Sunset Landscape' },
-  { filename: 'sunset-5800386_960_720.jpg', name: 'Sunset Horizon' },
-  { filename: 'boat-9322331_960_720.jpg', name: 'Boat Scene' },
-  { filename: 'dawn-8412840_960_720.jpg', name: 'Dawn Landscape' },
-  { filename: 'own/two_apples.jpg', name: 'Two Apples' },
-  { filename: 'own/every_vegetable.jpg', name: 'Fruits and Vegetables' },
-  { filename: 'own/onion_ginger.jpg', name: 'Ginger and Onion' },
-  { filename: 'own/single_apple.jpg', name: 'Red Apple' },
-  { filename: 'own/side_boob.jpg', name: 'Statue Side' },
-  { filename: 'own/frontal_boob.jpg', name: 'Statue Frontal' },
-  { filename: 'own/rear_view.jpg', name: 'Statue Rear' },
-];
+
+// Import gallery data and functions
+import { 
+  galleryGroups, 
+  getCurrentView, 
+  setCurrentView, 
+  getCurrentGroup, 
+  setCurrentGroup 
+} from "./modules/gallery.js";
+
 
 
 import { 
@@ -303,50 +283,110 @@ function resizeCanvasToFit() {
   canvas.style.height = canvasHeight + 'px';
 }
 
-// Create gallery items
+// Create gallery items - now supports both group view and image view
 function createGalleryItems() {
   // Clear existing items
-  galleryGrid.innerHTML = '';
+  galleryGrid.innerHTML = "";
   
-  referenceImages.forEach((image, index) => {
-    const galleryItem = document.createElement('div');
-    galleryItem.className = 'gallery-item';
-    galleryItem.dataset.index = index;
+  const currentView = getCurrentView();
+  const currentGroup = getCurrentGroup();
+  
+  // Update modal header based on current view
+  const modalHeader = document.querySelector(".modal-header h2");
+  
+  if (currentView === "groups") {
+    modalHeader.textContent = "Reference Images";
     
-    const img = document.createElement('img');
-    img.src = `data/images/${image.filename}`;
-    img.alt = image.name;
-    img.loading = 'lazy';
-    
-    const overlay = document.createElement('div');
-    overlay.className = 'gallery-item-overlay';
-    
-    const overlayText = document.createElement('div');
-    overlayText.className = 'gallery-item-overlay-text';
-    overlayText.textContent = image.name;
-    
-    overlay.appendChild(overlayText);
-    galleryItem.appendChild(img);
-    galleryItem.appendChild(overlay);
-    
-    galleryItem.addEventListener('click', () => {
-      // Remove selection from all items
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        item.classList.remove('selected');
+    // Show group thumbnails
+    galleryGroups.forEach((group, groupIndex) => {
+      const galleryItem = document.createElement("div");
+      galleryItem.className = "gallery-item gallery-group";
+      galleryItem.dataset.groupIndex = groupIndex;
+      
+      // Use thumbnail image (first image in group)
+      const thumbnailImage = group.images[group.group_thumbnail_index];
+      
+      const img = document.createElement("img");
+      img.src = thumbnailImage.file_path;
+      img.alt = group.group_name;
+      img.loading = "lazy";
+      
+      const overlay = document.createElement("div");
+      overlay.className = "gallery-item-overlay";
+      
+      const overlayText = document.createElement("div");
+      overlayText.className = "gallery-item-overlay-text";
+      overlayText.innerHTML = `<strong>${group.group_name}</strong><br><span style="font-size: 0.9em;">${group.images.length} images</span>`;
+      
+      overlay.appendChild(overlayText);
+      galleryItem.appendChild(img);
+      galleryItem.appendChild(overlay);
+      
+      galleryItem.addEventListener("click", () => {
+        // Switch to image view for this group
+        setCurrentGroup(group);
+        setCurrentView("images");
+        createGalleryItems();
       });
       
-      // Add selection to clicked item
-      galleryItem.classList.add('selected');
-      
-      // Load the selected image
-      loadReferenceImage(`data/images/${image.filename}`, image.name);
-      
-      // Close modal
-      galleryModal.style.display = 'none';
+      galleryGrid.appendChild(galleryItem);
+    });
+  } else if (currentView === "images" && currentGroup) {
+    // Update header with back button
+    modalHeader.innerHTML = `${currentGroup.group_name} <button class="back-btn" style="background: none; border: none; color: #666; font-size: 0.8em; margin-left: 10px; cursor: pointer;">← Back</button>`;
+    modalHeader.querySelector(".back-btn").addEventListener("click", () => {
+      setCurrentView("groups");
+      setCurrentGroup(null);
+      createGalleryItems();
     });
     
-    galleryGrid.appendChild(galleryItem);
-  });
+    // Show images in the current group
+    currentGroup.images.forEach((image, imageIndex) => {
+      const galleryItem = document.createElement("div");
+      galleryItem.className = "gallery-item";
+      galleryItem.dataset.imageIndex = imageIndex;
+      
+      const img = document.createElement("img");
+      img.src = image.file_path;
+      img.alt = image.title;
+      img.loading = "lazy";
+      
+      const overlay = document.createElement("div");
+      overlay.className = "gallery-item-overlay";
+      
+      const overlayText = document.createElement("div");
+      overlayText.className = "gallery-item-overlay-text";
+      overlayText.innerHTML = `<strong>${image.title}</strong>`;
+      if (image.info) {
+        overlayText.innerHTML += `<br><span style="font-size: 0.8em;">${image.info}</span>`;
+      }
+      if (image.url) {
+        overlayText.innerHTML += `<br><a href="${image.url}" target="_blank" style="color: #4CAF50; font-size: 0.8em;" onclick="event.stopPropagation();">Source</a>`;
+      }
+      
+      overlay.appendChild(overlayText);
+      galleryItem.appendChild(img);
+      galleryItem.appendChild(overlay);
+      
+      galleryItem.addEventListener("click", () => {
+        // Remove selection from all items
+        document.querySelectorAll(".gallery-item").forEach(item => {
+          item.classList.remove("selected");
+        });
+        
+        // Add selection to clicked item
+        galleryItem.classList.add("selected");
+        
+        // Load the selected image
+        loadReferenceImage(image.file_path, image.title);
+        
+        // Close modal
+        galleryModal.style.display = "none";
+      });
+      
+      galleryGrid.appendChild(galleryItem);
+    });
+  }
 }
 
 
@@ -547,12 +587,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Modal functionality
-  referenceGallery.addEventListener('click', () => {
+  referenceGallery.addEventListener("click", () => {
+    // Reset to groups view when opening modal
+    setCurrentView("groups");
+    setCurrentGroup(null);
+    
     if (!galleryLoaded) {
       createGalleryItems();
       galleryLoaded = true;
+    } else {
+      // Refresh gallery items to ensure we are in groups view
+      createGalleryItems();
     }
-    galleryModal.style.display = 'block';
+    galleryModal.style.display = "block";
   });
 
   closeModal.addEventListener('click', () => {
