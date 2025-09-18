@@ -55,7 +55,7 @@ import {
 } from "./modules/measure.js";
 
 
-let modules = [module_crop, module_brightness, module_contrast, module_saturation, module_greyscale, module_palette, module_grid, module_measure];
+let modules = [module_brightness, module_contrast, module_saturation, module_greyscale, module_palette, module_crop, module_grid, module_measure];
 
 
 
@@ -351,6 +351,17 @@ function createGalleryItems() {
       img.alt = image.title;
       img.loading = "lazy";
       
+      // Add source button if URL exists
+      if (image.url) {
+        const sourceBtn = document.createElement("a");
+        sourceBtn.href = image.url;
+        sourceBtn.target = "_blank";
+        sourceBtn.className = "gallery-source-btn";
+        sourceBtn.textContent = "Source";
+        sourceBtn.onclick = (e) => e.stopPropagation(); // Prevent image selection when clicking source
+        galleryItem.appendChild(sourceBtn);
+      }
+      
       const overlay = document.createElement("div");
       overlay.className = "gallery-item-overlay";
       
@@ -359,9 +370,6 @@ function createGalleryItems() {
       overlayText.innerHTML = `<strong>${image.title}</strong>`;
       if (image.info) {
         overlayText.innerHTML += `<br><span style="font-size: 0.8em;">${image.info}</span>`;
-      }
-      if (image.url) {
-        overlayText.innerHTML += `<br><a href="${image.url}" target="_blank" style="color: #4CAF50; font-size: 0.8em;" onclick="event.stopPropagation();">Source</a>`;
       }
       
       overlay.appendChild(overlayText);

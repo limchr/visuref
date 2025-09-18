@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Disallow legal pages from being crawled
+Disallow: /privacy_policy.html
+Disallow: /cookie_policy.html
+Disallow: /impressum.html
+
+# Allow main pages
+Allow: /index.html
+Allow: /course/
+Allow: /data/
+Allow: /js/
+Allow: /style.css
+
+# Sitemap (if you have one)
+# Sitemap: https://yourdomain.com/sitemap.xml

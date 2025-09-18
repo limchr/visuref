@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cookie Policy — visart.app</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin:24px; color:#111; line-height:1.55; }
+    h1 { margin-bottom:6px; }
+    h2 { margin-top:18px; }
+    p, li { font-size:14px; }
+    .note { color:#555; font-size:13px; }
+    code { background:#f3f3f3; padding:2px 4px; border-radius:4px; }
+    a { color:#0b63c8; }
+    table { border-collapse: collapse; width:100%; margin-top:10px; font-size:14px; }
+    table td, table th { border:1px solid #ccc; padding:6px; }
+    table th { background:#f9f9f9; }
+  </style>
+</head>
+<body>
+  <h1>Cookie Policy</h1>
+  <p class="note">Effective date: <strong>September 18, 2025</strong></p>
+
+  <section>
+    <h2>What are cookies?</h2>
+    <p>Cookies are small text files stored on your device when you visit a website. They allow the site to remember information about your visit, preferences, and device.</p>
+  </section>
+
+  <section>
+    <h2>Types of cookies used on this website</h2>
+    <ul>
+      <li><strong>Essential cookies:</strong> Required for website operation (e.g. session cookies). These do not require consent.</li>
+      <li><strong>Analytics cookies:</strong> Used to improve the website (Google Analytics). Only set with your explicit consent.</li>
+      <li><strong>External services:</strong> Services like PayPal or Patreon may set cookies when you click their buttons. These are subject to their own privacy policies.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Examples of cookies used</h2>
+    <table>
+      <tr><th>Type</th><th>Name (example)</th><th>Purpose</th><th>Retention</th></tr>
+      <tr><td>Essential</td><td>sessionid</td><td>Session management</td><td>Session</td></tr>
+      <tr><td>Analytics</td><td>_ga (Google Analytics)</td><td>Recognize returning visitors</td><td>Up to 14 months</td></tr>
+      <tr><td>External</td><td>paypal, patreon</td><td>Enable donation/payment</td><td>Varies by provider</td></tr>
+    </table>
+    <p class="note">Actual cookie names and durations may vary; this table is for illustration.</p>
+  </section>
+
+  <section>
+    <h2>Consent & withdrawal</h2>
+    <p>Before non-essential cookies are placed, you will be asked for your explicit consent (via the cookie banner). You can withdraw consent or adjust your preferences at any time, e.g. through a “Cookie settings” link at the bottom of the site.</p>
+  </section>
+
+  <section>
+    <h2>Managing cookies</h2>
+    <p>You can control cookies via your browser settings (block, delete, or restrict). Note that disabling cookies may affect website functionality. We also recommend using the cookie banner controls for granular choices.</p>
+  </section>
+
+  <section>
+    <h2>Google Analytics (only with consent)</h2>
+    <p>If you consent, Google Analytics (with IP anonymization enabled) is used to analyze site usage. Data is processed to improve the website. You may withdraw consent at any time.</p>
+    <p><strong>Measurement ID (placeholder):</strong> <code>G-XXXXXXXXXX</code></p>
+  </section>
+
+  <section>
+    <h2>External services (PayPal, Patreon)</h2>
+    <p>When you click donation buttons for PayPal or Patreon, these services may set their own cookies. Please refer to their privacy policies for details.</p>
+  </section>
+
+  <section>
+    <h2>Developer implementation note</h2>
+    <p>Non-essential scripts (e.g. Google Analytics) must not load until consent has been given. Example (pseudo-code):</p>
+
+    <pre><code>&lt;!-- Only load after consent --&gt;
+&lt;script&gt;
+  if (userConsent.analytics) {
+    // load GA script here
+  }
+&lt;/script&gt;
+</code></pre>
+
+    <p>For full compliance, use a Consent Management Platform (CMP) such as Cookiebot, Usercentrics, or CookieYes, or implement your own consent system with logging and withdrawal options.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>If you have questions about this Cookie Policy: <a href="mailto:cnlimberg@gmail.com">cnlimberg@gmail.com</a></p>
+  </section>
+
+  <footer style="margin-top:20px; font-size:13px; color:#555;">
+    <p>Last updated: September 18, 2025 — visart.app — Responsible: Christian Limberg</p>
+  </footer>
+</body>
+</html>

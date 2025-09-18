@@ -1,9 +1,4 @@
 todo:
-gallery with groupssome initialimages: group, image, title, linkes, infotext,
-blender renders
-impressum
-chookie policy statement?
-about section quick and dirty
 tool order
 
 later

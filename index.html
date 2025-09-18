@@ -9,7 +9,7 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VisArt - Visualize Reference Images</title>
+  <title>VisArt.app - Visualize Reference Images for your Sophisticated Art Projects</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -127,52 +127,310 @@
     </div>
   </div>
 
-  <!-- About Page -->
-  <div class="about-page" id="about-content">
-    <h2>About VisuRef</h2>
-    <p>
-      VisuRef is a powerful web-based tool designed specifically for artists, illustrators, and painters 
-      who need to analyze and manipulate reference images. Whether you're studying composition, 
-      analyzing color palettes, or preparing reference materials for your artwork, VisuRef provides 
-      the tools you need to enhance your creative process.
+<!-- About Page -->
+<div class="about-page" id="about-content">
+  <div class="about-hero">
+    <h2>About visart.app</h2>
+    <p class="intro-text">
+      Hey there, welcome to visart.app! Great to have you here. This app has one simple mission:
     </p>
-    
-    <div class="features">
-      <h3>Key Features</h3>
-      <ul>
-        <li><strong>Image Filters:</strong> Apply various filters like grayscale and brightness adjustments to analyze different aspects of your reference images</li>
-        <li><strong>Real-time Processing:</strong> See changes instantly as you adjust parameters</li>
-        <li><strong>Modular Design:</strong> Enable or disable different effects to focus on specific aspects of your reference</li>
-        <li><strong>Easy Upload:</strong> Simply drag and drop or select images from your device</li>
-        <li><strong>Responsive Interface:</strong> Works seamlessly on desktop and tablet devices</li>
-        <li><strong>No Installation Required:</strong> Runs entirely in your web browser</li>
-      </ul>
+    <blockquote class="mission-statement">
+      Revealing the essential information hidden in reference images for drawing, painting, and sketching
+    </blockquote>
+  </div>
+
+  <section class="why-visart">
+    <h3>Why visart.app?</h3>
+    <p>
+      Here's the thing about creating art from references – our brains are constantly playing tricks on us:
+    </p>
+    <ul class="brain-tricks">
+      <li>We see what we <em>think</em> is there, not what's actually there</li>
+      <li>Our minds automatically filter out shadows and tonal values</li>
+      <li>Complex forms get oversimplified – a face becomes a circle with two dots and a curved line</li>
+      <li>We miss crucial measurements and proportions between elements</li>
+    </ul>
+    <p>
+      This app offers simple, intuitive tools to analyze what's really in your reference images. Discover true tonal values, measure proportions accurately, understand composition, and see colors as they actually are – not as your brain interprets them.
+    </p>
+  </section>
+
+  <section class="how-it-works">
+    <h3>How It Works</h3>
+    <p>
+      Simply select an image from our reference gallery or upload your own for analysis. No login required, no subscription needed – just pure, focused tools designed to help you see like an artist.
+    </p>
+    <div class="gallery-info">
+      <p>
+        <strong>About the reference gallery:</strong> All images in the 'Simple Shapes' category were rendered by me using Blender. The 'Still Life' photos were captured with professional lighting (softbox + DSLR). These images are public domain – free to use in your projects! Though if you do use them, a shoutout to visart.app would be appreciated.
+      </p>
     </div>
-    
-    <p>
-      VisuRef is perfect for artists who want to:
-    </p>
-    <ul>
-      <li>Study the tonal values in reference images by converting them to grayscale</li>
-      <li>Analyze composition and lighting by adjusting brightness and contrast</li>
-      <li>Prepare reference materials for traditional or digital painting</li>
+  </section>
+
+  <section class="features">
+    <h3>Key Features</h3>
+    <ul class="feature-list">
+      <li>Convert images to grayscale to study tonal values</li>
+      <li>Adjust brightness and contrast to analyze composition and lighting</li>
+      <li>Prepare reference materials for traditional or digital art</li>
       <li>Understand color relationships and value structures</li>
       <li>Create study materials for art classes or workshops</li>
     </ul>
-    
     <p>
-      The tool is designed with simplicity in mind, allowing you to focus on your artistic analysis 
-      rather than complex software interfaces. Whether you're a beginner artist learning the fundamentals 
-      or an experienced professional refining your technique, VisuRef provides the tools you need to 
-      enhance your reference image analysis workflow.
+      Whether you're a beginner learning the fundamentals or an experienced artist refining your technique, visart.app provides the essential tools to enhance your reference image workflow – without the complexity of professional software.
     </p>
-  </div>
+  </section>
 
+  <section class="about-creator">
+    <h3>About the Creator</h3>
+    <div class="creator-bio">
+      <!-- Add your photo here -->
+      <div class="creator-photo">
+        <!-- <img src="your-photo.jpg" alt="Christian Limberg"> -->
+      </div>
+      <div class="creator-text">
+        <p>
+          I'm <strong>Christian Limberg</strong>, a computer scientist from Berlin, Germany. By day, I work as a postdoc researcher in AI. By night (and weekends), I'm always cooking up creative projects – from 3D printing to music to art tools.
+        </p>
+        <p>
+          visart.app was born from my own frustration during drawing studies. Elements were never the size I thought they were, and values were always surprisingly lighter or darker than expected. So I applied some computer vision techniques from my day job to solve these problems, and this little app emerged.
+        </p>
+        <p>
+          I've kept it minimal and focused because I believe good tools should enhance creativity, not complicate it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="support">
+    <h3>Support the Project</h3>
+    <p>
+      I hope visart.app helps you in your artistic journey! This app will always be free and ad-free – I hate banner ads as much as you do. They're creativity killers that disrupt the artistic thought process.
+    </p>
+    <p>
+      If you find this tool useful, consider making a small donation to help cover development and hosting costs. Every bit helps keep the app running and improving!
+    </p>
+    <p class="links">
+      Check out more of my projects at <a href="https://climberg.de" target="_blank">climberg.de</a>
+    </p>
+  </section>
+</div>
+
+<style>
+/* Optional CSS suggestions for styling */
+.about-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+.about-hero {
+  margin-bottom: 3rem;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.mission-statement {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 1.5rem 0;
+  border: none;
+}
+
+.about-page h3 {
+  color: #333;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.brain-tricks li,
+.feature-list li {
+  margin-bottom: 0.5rem;
+}
+
+.gallery-info {
+  background: #f7f7f7;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.creator-bio {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+}
+
+.creator-photo {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  background: #ddd;
+  border-radius: 8px;
+  /* Uncomment when you add your photo
+  overflow: hidden;
+  */
+}
+
+.creator-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.creator-text {
+  flex: 1;
+}
+
+.support {
+  background: #f0f4f8;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 3rem;
+}
+
+.links {
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+
+.links a {
+  color: #667eea;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.links a:hover {
+  border-bottom-color: #667eea;
+}
+
+@media (max-width: 600px) {
+  .creator-bio {
+    flex-direction: column;
+  }
+  
+  .creator-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+</style>
   <script src="js/modules/color.js" type="module"></script>
   <script src="js/modules/crop.js" type="module"></script>
   <script src="js/modules/grid.js" type="module"></script>
   <script src="js/modules/gallery.js" type="module"></script>
   <script src="js/app.js" type="module"></script>
   <script src="js/title_animation.js" type="module"></script>
+
+
+
+  <style>
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      padding: 15px;
+      font-family: sans-serif;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 9999;
+    }
+    #cookie-banner p {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+    #cookie-banner button {
+      margin-right: 10px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #cookie-accept { background: #4caf50; color: #fff; }
+    #cookie-decline { background: #f44336; color: #fff; }
+    #cookie-settings { background: #2196f3; color: #fff; }
+  </style>
+
+
+
+
+  <div id="cookie-banner">
+    <p>
+      We use cookies to improve your experience. Some are essential, others help us
+      (Google Analytics, PayPal, Patreon). You can accept or decline optional cookies.
+    </p>
+    <button id="cookie-accept">Accept all</button>
+    <button id="cookie-decline">Decline</button>
+  </div>
+
+  <script>
+    // --- Consent Management ---
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const declineBtn = document.getElementById("cookie-decline");
+
+    // Show banner if no consent is stored
+    if (!localStorage.getItem("cookieConsent")) {
+      banner.style.display = "block";
+    } else if (localStorage.getItem("cookieConsent") === "accepted") {
+      loadAnalytics();
+    }
+
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "accepted");
+      banner.style.display = "none";
+      loadAnalytics();
+    });
+
+    declineBtn.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "declined");
+      banner.style.display = "none";
+    });
+
+    // --- Load Google Analytics only after consent ---
+    function loadAnalytics() {
+      if (window.gaLoaded) return; // prevent double-loading
+      window.gaLoaded = true;
+
+      // Example Google Analytics 4 (replace with your ID)
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX";
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX', { 'anonymize_ip': true });
+    }
+  </script>
+
+
+
+
+
+
+  <!-- Legal Links -->
+  <div class="legal-links">
+    <a href="privacy_policy.html">Privacy Policy</a>
+    <a href="cookie_policy.html">Cookie Policy</a>
+    <a href="impressum.html">Impressum</a>
+  </div>
+
 </body>
 </html>
