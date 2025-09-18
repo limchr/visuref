@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VisArt.app - Visualize Reference Images for your Sophisticated Art Projects</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <!-- Header -->
@@ -50,18 +50,22 @@
     <div id="main">
       <div class="image-selection-mode" id="imageSelectionMode">
         <div class="selection-areas">
-          <div class="upload-area" id="uploadArea">
-            <div class="upload-icon">📁</div>
-            <div class="upload-text">Upload an Image</div>
-            <div class="upload-subtext">Click or drag and drop an image to get started</div>
-            <input type="file" id="fileInput" accept="image/*">
-          </div>
           
           <div class="reference-gallery" id="referenceGallery">
             <div class="upload-icon">🖼️</div>
             <div class="upload-text">Reference Gallery</div>
             <div class="upload-subtext">Browse our collection of reference images</div>
           </div>
+
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Upload an Image</div>
+            <div class="upload-subtext">Click or drag and drop an image to get started</div>
+            <input type="file" id="fileInput" accept="image/*">
+          </div>
+
+
+
         </div>
       </div>
       
@@ -186,7 +190,7 @@
     <div class="creator-bio">
       <!-- Add your photo here -->
       <div class="creator-photo">
-        <!-- <img src="your-photo.jpg" alt="Christian Limberg"> -->
+        <img src="./data/resources/me.jpg" alt="Me">
       </div>
       <div class="creator-text">
         <p>
@@ -325,12 +329,8 @@
   }
 }
 </style>
-  <script src="js/modules/color.js" type="module"></script>
-  <script src="js/modules/crop.js" type="module"></script>
-  <script src="js/modules/grid.js" type="module"></script>
-  <script src="js/modules/gallery.js" type="module"></script>
-  <script src="js/app.js" type="module"></script>
-  <script src="js/title_animation.js" type="module"></script>
+<script src="js/main.js" type="module"></script>
+<script src="js/title_animation.js" type="module"></script>
 
 
 

@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Main CSS File - Import All Stylesheets
+   ========================================================================== */
+
+/* Import all CSS modules in the correct order */
+@import url('./variables.css');     /* Design tokens and CSS variables */
+@import url('./base.css');          /* Base styles and reset */
+@import url('./header.css');        /* Header and navigation */
+@import url('./layout.css');        /* Main layout and structure */
+@import url('./canvas.css');        /* Canvas and upload areas */
+@import url('./modules.css');       /* Module system and components */
+@import url('./components.css');    /* Reusable components */
+@import url('./modal.css');         /* Modal system and gallery */
+@import url('./pages.css');         /* Page-specific styles */
+@import url('./footer.css');        /* Footer and legal links */
+@import url('./responsive.css');    /* Responsive design and media queries */

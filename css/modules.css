@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Module System & Components
+   ========================================================================== */
+.module {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.module.active {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.module.active::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid var(--primary);
+}
+
+/* Module Headings */
+.module h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.module.active h3 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.module-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 12px;
+  background: #f0f0f0;
+  color: #666;
+}
+
+.module.active .module-icon {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Module Layout */
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.module-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* Module Parameters */
+.module-params {
+  transition: all var(--transition);
+  overflow: visible;
+  max-height: none;
+}
+
+.module:not(.active) .module-params {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.module.active .module-params {
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
+}
+
+/* Labels and Controls */
+.module label {
+  display: block;
+  margin: 8px 0;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  transition: all var(--transition);
+  opacity: 1;
+  max-height: none;
+  overflow: visible;
+}
+
+.module:not(.active) label:not(:first-child) {
+  display: none;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.module input[type="range"] {
+  width: 100%;
+  margin: 5px 0;
+}
+
+/* Module Buttons */
+.module-button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--transition);
+  margin-top: 5px;
+  width: 100%;
+}
+
+.module-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.module-button:active,
+.module-button.active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}

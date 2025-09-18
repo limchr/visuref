@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap');
+
+/* ==========================================================================
+   Design Tokens & Variables
+   ========================================================================== */
+:root {
+  /* Colors */
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-text: #333;
+  --color-text-muted: #555;
+  --color-text-dim: #666;
+  --color-border: #e0e0e0;
+  --color-border-strong: #ddd;
+
+  --primary: #667eea;
+  --primary-2: #764ba2; /* matches several gradients */
+  --header-end: #7a5f96; /* header gradient end */
+  --success-start: #28a745;
+  --success-end: #20c997;
+
+  /* Effects */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 15px;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.3);
+
+  /* Motion */
+  --easing: ease;
+  --transition-fast: 0.2s var(--easing);
+  --transition: 0.3s var(--easing);
+
+  /* Layout */
+  --container-max: 1200px;
+  --gutter: 20px;
+  --header-height: 100px; /* used for main layout calc */
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
