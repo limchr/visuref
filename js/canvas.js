@@ -34,18 +34,30 @@ function initializeCanvas(onLoadImage) {
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       const file = files[0];
-      if (file.type.startsWith('image/')) {
-        if (loadImageCallback) loadImageCallback(file);
+      load_image_from_fileobj(file);
       }
-    }
   });
 
   // File input change handler
   fileInput.onchange = e => {
     const file = e.target.files[0];
-    if (!file) return;
-    if (loadImageCallback) loadImageCallback(file);
+    load_image_from_fileobj(file);
   };
+
+function load_image_from_fileobj(file_obj) {
+  if (file_obj.type.startsWith('image/')) {
+    const img = new Image();
+    img.src = URL.createObjectURL(file_obj);
+    img.onload = () => {
+      imageSelectionMode.style.display = 'none';
+      canvas.classList.add('show');
+      resizeCanvasToFit(img);
+      if (loadImageCallback) loadImageCallback(img);
+    };
+  }
+}
+
+
 }
 
 // Load image function
@@ -75,30 +87,40 @@ function loadReferenceImage(imagePath, imageName, onLoad) {
 // Resize canvas to fit available space while maintaining aspect ratio
 function resizeCanvasToFit(image) {
   if (!image) return;
-  
+
   const mainContainer = document.getElementById('main');
-  const containerWidth = mainContainer.clientWidth - 10; // Account for padding
-  const containerHeight = mainContainer.clientHeight - 10; // Account for padding
-  
+  const containerWidth = mainContainer.clientWidth;
+  const maxHeight = window.innerHeight;
+
   const imageAspectRatio = image.width / image.height;
-  const containerAspectRatio = containerWidth / containerHeight;
-  
-  let canvasWidth, canvasHeight;
-  
-  if (imageAspectRatio > containerAspectRatio) {
-    // Image is wider than container - fit to width
-    canvasWidth = containerWidth;
-    canvasHeight = containerWidth / imageAspectRatio;
+  const maxAspectRatio = containerWidth / maxHeight;
+
+  let drawWidth, drawHeight;
+
+  if (imageAspectRatio > maxAspectRatio) {
+    drawWidth = containerWidth;
+    drawHeight = drawWidth / imageAspectRatio;
   } else {
-    // Image is taller than container - fit to height
-    canvasHeight = containerHeight;
-    canvasWidth = containerHeight * imageAspectRatio;
+    drawHeight = maxHeight;
+    drawWidth = drawHeight * imageAspectRatio;
   }
-  
-  // Set canvas size
-  canvas.style.width = canvasWidth + 'px';
-  canvas.style.height = canvasHeight + 'px';
+
+  const dpr = window.devicePixelRatio || 1;
+
+  // Internal buffer size
+  canvas.width = Math.round(drawWidth * dpr);
+  canvas.height = Math.round(drawHeight * dpr);
+
+  // CSS display size
+  canvas.style.width = drawWidth + "px";
+  canvas.style.height = drawHeight + "px";
+
+  // Container adapts to canvas height but capped by viewport
+  mainContainer.style.height = Math.min(drawHeight, maxHeight) + "px";
+
+  return { drawWidth, drawHeight, dpr };
 }
+
 
 export { 
   initializeCanvas, 

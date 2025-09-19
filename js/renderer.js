@@ -6,25 +6,21 @@ let moduleOutputs = {};
 
 // Main render function
 function render(originalImage, renderFrom = null) {
+  renderFrom = null;
   if (!originalImage) return;
   
   console.log('Rendering with modules:', modules.filter(m => m.enabled).map(m => m.title));
   
-  // Resize canvas to fit the image
-  resizeCanvasToFit(originalImage);
-  
-  // Set canvas internal resolution to match display size
-  const displayWidth = parseInt(canvas.style.width) || originalImage.width;
-  const displayHeight = parseInt(canvas.style.height) || originalImage.height;
-  
-  canvas.width = displayWidth;
-  canvas.height = displayHeight;
-  
-  // Clear canvas and draw image scaled to fit
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
-  
-  let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const { drawWidth, drawHeight, dpr } = resizeCanvasToFit(originalImage);
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // ensure drawing scale matches DPR
+
+  // Clear and draw scaled image
+  ctx.clearRect(0, 0, drawWidth, drawHeight);
+  ctx.drawImage(originalImage, 0, 0, drawWidth, drawHeight);
+
+  // Extract pixel data at internal resolution
+  let imageData = ctx.getImageData(0, 0, drawWidth * dpr, drawHeight * dpr);
 
   // Handle selective rendering from a specific module
   let renderEnabled = renderFrom ? false : true;
@@ -35,13 +31,13 @@ function render(originalImage, renderFrom = null) {
     } 
     
     if (renderEnabled && m.enabled) {
-      // Pass canvas to modules that need it (like Grid and Crop)
-      if (m.title === 'Grid' || m.title === 'Crop' || m.title === 'Measure') {
+      // Pass canvas if module needs dimensions
+      if (["Grid", "Crop", "Measure"].includes(m.title)) {
         imageData = m.apply(imageData, m.params, canvas);
       } else {
         imageData = m.apply(imageData, m.params);
       }
-      
+
       // Store module output for potential reuse
       moduleOutputs[m.title] = new ImageData(
         new Uint8ClampedArray(imageData.data), // deep copy
@@ -53,7 +49,8 @@ function render(originalImage, renderFrom = null) {
       imageData = moduleOutputs[m.title];
     }
   });
-  
+
+  // Put image back at internal resolution
   ctx.putImageData(imageData, 0, 0);
 }
 
