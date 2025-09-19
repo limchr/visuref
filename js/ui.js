@@ -28,7 +28,7 @@ const modules = [
   module_saturation, 
   module_greyscale, 
   module_palette, 
-  module_crop, 
+  //module_crop, 
   module_grid, 
   module_measure
 ];
