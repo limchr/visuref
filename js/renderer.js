@@ -1,6 +1,7 @@
 // modules/renderer.js - Rendering pipeline and image processing
 import { canvas, ctx, resizeCanvasToFit } from './canvas.js';
 import { modules } from './ui.js';
+import { pipelineEnabled } from './main.js';
 
 let moduleOutputs = {};
 
@@ -9,8 +10,6 @@ function render(originalImage, renderFrom = null) {
   renderFrom = null;
   if (!originalImage) return;
   
-  console.log('Rendering with modules:', modules.filter(m => m.enabled).map(m => m.title));
-  
   const { drawWidth, drawHeight, dpr } = resizeCanvasToFit(originalImage);
 
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // ensure drawing scale matches DPR
@@ -18,6 +17,14 @@ function render(originalImage, renderFrom = null) {
   // Clear and draw scaled image
   ctx.clearRect(0, 0, drawWidth, drawHeight);
   ctx.drawImage(originalImage, 0, 0, drawWidth, drawHeight);
+
+  // If pipeline is disabled, just show the original image
+  if (!pipelineEnabled) {
+    console.log('Pipeline disabled - showing original image');
+    return;
+  }
+
+  console.log('Rendering with modules:', modules.filter(m => m.enabled).map(m => m.title));
 
   // Extract pixel data at internal resolution
   let imageData = ctx.getImageData(0, 0, drawWidth * dpr, drawHeight * dpr);

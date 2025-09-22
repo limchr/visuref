@@ -1,12 +1,13 @@
-todo:
-
-later
-app.js refactoring
+todo later:
 js obfuscation
 hosting on own server
 tracking with google api
 donation function
 
+outreach:
+support@proko.com
+stan@stanmiller.net
+jeffhaines555@gmail.com portraits
 # favicon creation
 
 convert favicon.png -define icon:auto-resize=16,24,32,48,64,128 favicon.ico

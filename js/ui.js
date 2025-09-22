@@ -17,6 +17,9 @@ import {
 import { 
   module_measure, 
 } from "./modules/measure.js";
+import { 
+  module_filter, 
+} from "./modules/filter.js";
 import { canvas } from './canvas.js';
 
 const modulesDiv = document.getElementById('modules');
@@ -26,11 +29,12 @@ const modules = [
   module_brightness, 
   module_contrast, 
   module_saturation, 
+  module_filter,
   module_greyscale, 
   module_palette, 
   //module_crop, 
   module_grid, 
-  module_measure
+  module_measure,
 ];
 
 let renderCallback = null;
@@ -125,8 +129,31 @@ function createModuleUI(module) {
       labelText.textContent = param.label;
       element.appendChild(labelText);
       
-      // Value input field (for range inputs only)
-      if (param.type === "range") {
+      // Handle different input types
+      if (param.type === "select") {
+        // Create select dropdown
+        const select = document.createElement('select');
+        select.value = param.value;
+        select.style.cssText = 'flex: 1; margin-left: 5px; padding: 2px 4px; border: 1px solid #ccc; border-radius: 3px;';
+        
+        // Add options
+        if (param.options) {
+          param.options.forEach(option => {
+            const optionElement = document.createElement('option');
+            optionElement.value = option.value;
+            optionElement.textContent = option.text;
+            select.appendChild(optionElement);
+          });
+        }
+        
+        select.onchange = () => {
+          param.value = select.value;
+          if (renderCallback) renderCallback(module.title);
+        };
+        
+        element.appendChild(select);
+      } else if (param.type === "range") {
+        // Value input field (for range inputs only)
         const valueInput = document.createElement('input');
         valueInput.type = 'number';
         valueInput.value = param.value;
@@ -144,13 +171,11 @@ function createModuleUI(module) {
           if (renderCallback) renderCallback(module.title); 
         };
         element.appendChild(valueInput);
-      }
-      
-      // Range input
-      const input = document.createElement('input');
-      input.type = param.type;
-      input.value = param.value;
-      if (param.type === "range") {
+        
+        // Range input
+        const input = document.createElement('input');
+        input.type = param.type;
+        input.value = param.value;
         input.min = param.min;
         input.max = param.max;
         input.step = param.step;
@@ -164,13 +189,18 @@ function createModuleUI(module) {
           }
           if (renderCallback) renderCallback(module.title); 
         };
+        element.appendChild(input);
       } else {
+        // Other input types (checkbox, etc.)
+        const input = document.createElement('input');
+        input.type = param.type;
+        input.value = param.value;
         input.oninput = () => { 
           param.value = input.type === 'checkbox' ? input.checked : Number(input.value); 
           if (renderCallback) renderCallback(module.title); 
         };
+        element.appendChild(input);
       }
-      element.appendChild(input);
     }
     if(element) {
       paramsContainer.appendChild(element);

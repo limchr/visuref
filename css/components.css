@@ -197,3 +197,17 @@
 .toggle-switch input:checked:hover + .toggle-slider {
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 0 12px rgba(102, 126, 234, 0.4);
 }
+
+/* Sidebar Title Container */
+.sidebar-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 3px;
+}
+
+.sidebar-title-container .toggle-switch {
+  margin-right: 0;
+  flex-shrink: 0;
+}

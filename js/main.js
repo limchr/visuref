@@ -30,12 +30,14 @@ import { module_grid } from "./modules/grid.js";
 import { module_crop } from "./modules/crop.js";
 import { module_palette } from "./modules/palette.js";
 import { module_measure } from "./modules/measure.js";
+import { module_filter } from "./modules/filter.js";
 
 
 
 
 // Global state
 let originalImage = null;
+let pipelineEnabled = true;
 
 // Initialize application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeNavigation();
   initializeCourse();
   initializeExport();
+  initializePipelineToggle();
   
   console.log('VisuRef application initialized');
 });
@@ -72,5 +75,21 @@ window.addEventListener('resize', function() {
   }
 }, true);
 
+// Initialize pipeline toggle functionality
+function initializePipelineToggle() {
+  const pipelineToggle = document.getElementById('pipelineToggle');
+  if (pipelineToggle) {
+    pipelineToggle.addEventListener('change', (e) => {
+      pipelineEnabled = e.target.checked;
+      console.log('Pipeline enabled:', pipelineEnabled);
+      
+      // Re-render the image with current pipeline state
+      if (originalImage) {
+        render(originalImage);
+      }
+    });
+  }
+}
+
 // Export references for other modules that might need them
-export { originalImage, handleImageLoad };
+export { originalImage, handleImageLoad, pipelineEnabled };

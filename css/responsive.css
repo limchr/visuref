@@ -162,6 +162,12 @@
     margin-top: 5px;
   }
   
+  .param-label select {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 5px;
+  }
+  
   /* Modal adjustments for small screens */
   .modal-content {
     width: 95%;
