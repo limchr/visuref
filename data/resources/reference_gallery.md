@@ -1,91 +1,83 @@
-data structure for saving images:
+Refactor the Reference image gallery. It should now have also nested groups
 
-gallery_group
-    group_thumbnail_index
-    group_name
-    [gallery_image]
+Top level Groups
 
-gallery_image
-    title
-    file_path (/data/image_gallery/...)
-    url [optional]
-    info [optional]
+Simple Shapes Renderings (the current group Simple Shapes, contains those Images)
+Pencil Sketches (The sub groups of this groups are contained in the directory 'pencil' which contains the images)
+Watercolor Paintings (The sub groups of this group are contained in the directory 'watercolor' which contains the images)
+Reference Photos (Contains the current groups Still Lifes, Portraits, Postures, Animals, Landscapes)
+Old Masters (the same old group)
 
-# Simple Shapes
-
-[in files, rendered by me with blender]
-
-# Still Lifes
-
-[in files, photographed by me]
-
-# Portraits
-
-https://www.publicdomainpictures.net/en/view-image.php?image=17322&picture=newborn-sleeping
-
-https://www.publicdomainpictures.net/en/view-image.php?image=19963&picture=sad-woman
-
-https://www.publicdomainpictures.net/en/view-image.php?image=19826&picture=sad-child-portrait
-
-https://www.publicdomainpictures.net/en/view-image.php?image=14815&picture=smiling-woman-with-hat
-
-https://www.publicdomainpictures.net/en/view-image.php?image=15404&picture=angry-woman
-
-https://www.publicdomainpictures.net/en/view-image.php?image=310530&picture=portrait-of-man
-
-# postures
-
-https://www.publicdomainpictures.net/en/view-image.php?image=421457&picture=girl-swimsuit-body-figure-legs
-
-https://www.publicdomainpictures.net/en/view-image.php?image=421458&picture=girl-swimsuit-body-figure-legs
-
-https://www.publicdomainpictures.net/en/view-image.php?image=421456&picture=girl-swimsuit-body-figure-legs
-
-https://www.publicdomainpictures.net/en/view-image.php?image=178398&picture=mannequin-doll
-
-https://www.publicdomainpictures.net/en/view-image.php?image=178405&picture=mannequin-doll
-
-https://www.publicdomainpictures.net/en/view-image.php?image=178396&picture=mannequin-doll
-
-# Animals
-
-https://www.publicdomainpictures.net/en/view-image.php?image=11999&picture=old-chimpanzee
-
-https://www.publicdomainpictures.net/en/view-image.php?image=17011&picture=leopards-head
-
-https://www.publicdomainpictures.net/en/view-image.php?image=33778&picture=lynx-or-bobcat
-
-https://www.publicdomainpictures.net/en/view-image.php?image=31959&picture=dog
-
-https://www.publicdomainpictures.net/en/view-image.php?image=212551&picture=bighorn-sheep
-
-https://www.publicdomainpictures.net/en/view-image.php?image=167326&picture=cat-on-the-white
-
-# Old Masters
-
-https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_(1632-1675)_-_The_Girl_With_The_Pearl_Earring_(1665).jpg
-
-https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.jpg
-
-https://commons.wikimedia.org/wiki/File:Peter_Paul_Rubens_-_The_toilet_of_Venus.jpg
-
-https://commons.wikimedia.org/wiki/File:Peter_Paul_Rubens_-_The_Rape_of_the_Daughters_of_Leucippus.jpg
-
-https://commons.wikimedia.org/wiki/File:Rembrandt_%C3%A0_la_casquette.tif
-
-https://commons.wikimedia.org/wiki/File:The_Holy_Family_-_Rembrandt.jpg
+Restructure the old groups into this new structure with sub groups The new top level groups pencil and watercolor are structured like:
 
 
-# Landscapes
+    motives = {
+  "Human Figures": [
+    ["female_figure_sitting_chair_sideview.jpg", "Female figure sitting on a chair, side view, natural pose"],
+    ["male_figure_walking_streetwear.jpg", "Male figure walking mid-step, streetwear clothing"],
+    ["dancer_in_motion_flowing_dress.jpg", "Dancer in motion, flowing dress, soft lighting"],
+    ["person_holding_umbrella_rain.jpg", "Person holding umbrella, rainy day"],
+  ],
 
-https://www.publicdomainpictures.net/en/view-image.php?image=197746&picture=blue-mountain-range
+  "Portraits": [
+    ["male_portrait_dramatic_lighting.jpg", "Male portrait, dramatic side lighting"],
+    ["old_man_wrinkled_portrait.jpg", "Old man with wrinkles, character portrait"],
+    ["figure_in_candlelight_chiaroscuro.jpg", "Figure in candlelight, chiaroscuro"],
+    ["portrait_lit_from_below.jpg", "Portrait lit from below"],
+    ["person_under_streetlamp_night.jpg", "Person under streetlamp at night"]
+  ],
 
-https://www.publicdomainpictures.net/en/view-image.php?image=197745&picture=blue-mountain-range
+  "Facial Expressions": [
+    ["smile_with_teeth.jpg", "Smile with teeth, natural lighting"],
+    ["sad_face_teary_eyes.jpg", "Sad face, teary eyes"],
+    ["shocked_expression_open_mouth.jpg", "Shocked expression, mouth open"],
+    ["confused_face_head_tilted.jpg", "Confused face, head tilted"],
+    ["crying_face_soft_lighting.jpg", "Crying face, soft lighting"],
+    ["mischievous_smile.jpg", "Mischievous smile"]
+  ],
 
-https://www.publicdomainpictures.net/en/view-image.php?image=226821&picture=sun-setting
+  "Hands and Gestures": [
+    ["two_hands_interacting.jpg", "Two hands interacting with each other"],
+    ["hand_gripping_cup.jpg", "Hand gripping a cup"],
+    ["child_hand_holding_adult_finger.jpg", "Child’s hand holding an adult’s finger"],
+    ["hand_holding_flower.jpg", "Hand holding a small flower"]
+  ],
 
-https://www.publicdomainpictures.net/en/view-image.php?image=222123&picture=mountain-sunset
+  "Architectural and Environmental Scenes": [
+    ["street_alley_one_point_perspective.jpg", "Street alley, one-point perspective"],
+    ["interior_hallway_vanishing_point.jpg", "Interior hallway, strong vanishing point"],
+    ["bridge_crossing_river_aerial.jpg", "Bridge crossing river, aerial view"],
+    ["mountain_valley_fog_layers.jpg", "Mountain valley, fog layers"],
+    ["urban_intersection_night.jpg", "Urban intersection at night"],
+    ["alleyway_strong_shadows.jpg", "Alleyway with strong shadows"],
+    ["looking_up_tall_buildings.jpg", "Looking up at tall buildings"],
+    ["low_key_dramatic_mood.jpg", "Low-key lighting, dramatic mood"]
+  ],
 
-https://www.publicdomainpictures.net/en/view-image.php?image=27877&picture=evening-landscape
+  "Objects and Still Life": [
+    ["hanging_lanterns_night.jpg", "Hanging lanterns at night"],
+    ["japanese_torii_gate.jpg", "Japanese torii gate"],
+    ["ancient_temple_ruins.jpg", "Ancient temple ruins"],
+    ["coffee_cup_on_table.jpg", "Coffee cup on table"],
+    ["fruit_bowl_still_life.jpg", "Fruit bowl still life"],
+    ["clock_tower_sunset.jpg", "Clock tower in sunset light"],
+    ["flower_vase_window_sill.jpg", "Flower vase on window sill"],
+    ["vintage_camera_on_desk.jpg", "Vintage camera on desk"],
+    ["tea_set_with_steam.jpg", "Tea set with steam rising"],
+    ["apple_and_glass_still_life.jpg", "Apple and glass cup still life"],
+    ["ceramic_vase_shadows.jpg", "Ceramic vase with shadows"],
+    ["forest_clearing_morning_fog.jpg", "Forest clearing, morning fog"]
+  ],
 
-https://www.publicdomainpictures.net/en/view-image.php?image=55215&picture=autumn-landscape
+  "Animals": [
+    ["squirrel_eating_nut.jpg", "Squirrel eating nut"],
+    ["elephant_side_profile_savanna.jpg", "Elephant side profile, savanna"],
+    ["dog_portrait_looking_up.jpg", "Dog looking up, portrait view"],
+    ["cat_stretching.jpg", "Cat stretching"],
+    ["cat_sleeping_sunlight.jpg", "Cat sleeping in sunlight"],
+    ["dog_running_across_grass.jpg", "Dog running across grass"],
+    ["lion_resting_under_tree.jpg", "Lion resting under tree"]
+  ]
+    }
+
+
