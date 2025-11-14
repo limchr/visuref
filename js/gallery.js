@@ -41,8 +41,289 @@ export const galleryGroups = [
       }
     ]
   },
+
   {
-    group_name: "Pencil Sketches",
+    group_name: "Draft Pencil Sketches",
+    group_thumbnail_index: 0,
+    subgroups: [
+      {
+        group_name: "Human Figures",
+        group_thumbnail_index: 0,
+        images: [
+          {
+            title: "Female figure sitting on a chair, side view, natural pose",
+            file_path: "data/image_gallery/sketch/Human Figures/female_figure_sitting_chair_sideview.jpg",
+            info: "Female figure sitting on a chair, side view, natural pose"
+          },
+          {
+            title: "Male figure walking mid-step, streetwear clothing",
+            file_path: "data/image_gallery/sketch/Human Figures/male_figure_walking_streetwear.jpg",
+            info: "Male figure walking mid-step, streetwear clothing"
+          },
+          {
+            title: "Dancer in motion, flowing dress, soft lighting",
+            file_path: "data/image_gallery/sketch/Human Figures/dancer_in_motion_flowing_dress.jpg",
+            info: "Dancer in motion, flowing dress, soft lighting"
+          },
+          {
+            title: "Person holding umbrella, rainy day",
+            file_path: "data/image_gallery/sketch/Human Figures/person_holding_umbrella_rain.jpg",
+            info: "Person holding umbrella, rainy day"
+          }
+        ]
+      },
+      {
+        group_name: "Portraits",
+        group_thumbnail_index: 0,
+        images: [
+          {
+            title: "Male portrait, dramatic side lighting",
+            file_path: "data/image_gallery/sketch/Portraits/male_portrait_dramatic_lighting.jpg",
+            info: "Male portrait, dramatic side lighting"
+          },
+          {
+            title: "Old man with wrinkles, character portrait",
+            file_path: "data/image_gallery/sketch/Portraits/old_man_wrinkled_portrait.jpg",
+            info: "Old man with wrinkles, character portrait"
+          },
+          {
+            title: "Figure in candlelight, chiaroscuro",
+            file_path: "data/image_gallery/sketch/Portraits/figure_in_candlelight_chiaroscuro.jpg",
+            info: "Figure in candlelight, chiaroscuro"
+          },
+          {
+            title: "Portrait lit from below",
+            file_path: "data/image_gallery/sketch/Portraits/portrait_lit_from_below.jpg",
+            info: "Portrait lit from below"
+          },
+          {
+            title: "Person under streetlamp at night",
+            file_path: "data/image_gallery/sketch/Portraits/person_under_streetlamp_night.jpg",
+            info: "Person under streetlamp at night"
+          }
+        ]
+      },
+      {
+        group_name: "Facial Expressions",
+        group_thumbnail_index: 0,
+        images: [
+          {
+            title: "Smile with teeth, natural lighting",
+            file_path: "data/image_gallery/sketch/Facial Expressions/smile_with_teeth.jpg",
+            info: "Smile with teeth, natural lighting"
+          },
+          {
+            title: "Sad face, teary eyes",
+            file_path: "data/image_gallery/sketch/Facial Expressions/sad_face_teary_eyes.jpg",
+            info: "Sad face, teary eyes"
+          },
+          {
+            title: "Shocked expression, mouth open",
+            file_path: "data/image_gallery/sketch/Facial Expressions/shocked_expression_open_mouth.jpg",
+            info: "Shocked expression, mouth open"
+          },
+          {
+            title: "Confused face, head tilted",
+            file_path: "data/image_gallery/sketch/Facial Expressions/confused_face_head_tilted.jpg",
+            info: "Confused face, head tilted"
+          },
+          {
+            title: "Crying face, soft lighting",
+            file_path: "data/image_gallery/sketch/Facial Expressions/crying_face_soft_lighting.jpg",
+            info: "Crying face, soft lighting"
+          },
+          {
+            title: "Mischievous smile",
+            file_path: "data/image_gallery/sketch/Facial Expressions/mischievous_smile.jpg",
+            info: "Mischievous smile"
+          }
+        ]
+      },
+      {
+        group_name: "Hands and Gestures",
+        group_thumbnail_index: 0,
+        images: [
+          {
+            title: "Two hands interacting with each other",
+            file_path: "data/image_gallery/sketch/Hands and Gestures/two_hands_interacting.jpg",
+            info: "Two hands interacting with each other"
+          },
+          {
+            title: "Hand gripping a cup",
+            file_path: "data/image_gallery/sketch/Hands and Gestures/hand_gripping_cup.jpg",
+            info: "Hand gripping a cup"
+          },
+          {
+            title: "Child's hand holding an adult's finger",
+            file_path: "data/image_gallery/sketch/Hands and Gestures/child_hand_holding_adult_finger.jpg",
+            info: "Child's hand holding an adult's finger"
+          },
+          {
+            title: "Hand holding a small flower",
+            file_path: "data/image_gallery/sketch/Hands and Gestures/hand_holding_flower.jpg",
+            info: "Hand holding a small flower"
+          }
+        ]
+      },
+      {
+        group_name: "Architectural and Environmental Scenes",
+        group_thumbnail_index: 0,
+        images: [
+          {
+            title: "Street alley, one-point perspective",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/street_alley_one_point_perspective.jpg",
+            info: "Street alley, one-point perspective"
+          },
+          {
+            title: "Interior hallway, strong vanishing point",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/interior_hallway_vanishing_point.jpg",
+            info: "Interior hallway, strong vanishing point"
+          },
+          {
+            title: "Bridge crossing river, aerial view",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/bridge_crossing_river_aerial.jpg",
+            info: "Bridge crossing river, aerial view"
+          },
+          {
+            title: "Mountain valley, fog layers",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/mountain_valley_fog_layers.jpg",
+            info: "Mountain valley, fog layers"
+          },
+          {
+            title: "Urban intersection at night",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/urban_intersection_night.jpg",
+            info: "Urban intersection at night"
+          },
+          {
+            title: "Alleyway with strong shadows",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/alleyway_strong_shadows.jpg",
+            info: "Alleyway with strong shadows"
+          },
+          {
+            title: "Looking up at tall buildings",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/looking_up_tall_buildings.jpg",
+            info: "Looking up at tall buildings"
+          },
+          {
+            title: "Low-key lighting, dramatic mood",
+            file_path: "data/image_gallery/sketch/Architectural and Environmental Scenes/low_key_dramatic_mood.jpg",
+            info: "Low-key lighting, dramatic mood"
+          }
+        ]
+      },
+      {
+        group_name: "Objects and Still Life",
+        group_thumbnail_index: 0,
+        images: [
+          {
+            title: "Hanging lanterns at night",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/hanging_lanterns_night.jpg",
+            info: "Hanging lanterns at night"
+          },
+          {
+            title: "Japanese torii gate",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/japanese_torii_gate.jpg",
+            info: "Japanese torii gate"
+          },
+          {
+            title: "Ancient temple ruins",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/ancient_temple_ruins.jpg",
+            info: "Ancient temple ruins"
+          },
+          {
+            title: "Coffee cup on table",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/coffee_cup_on_table.jpg",
+            info: "Coffee cup on table"
+          },
+          {
+            title: "Fruit bowl still life",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/fruit_bowl_still_life.jpg",
+            info: "Fruit bowl still life"
+          },
+          {
+            title: "Clock tower in sunset light",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/clock_tower_sunset.jpg",
+            info: "Clock tower in sunset light"
+          },
+          {
+            title: "Flower vase on window sill",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/flower_vase_window_sill.jpg",
+            info: "Flower vase on window sill"
+          },
+          {
+            title: "Vintage camera on desk",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/vintage_camera_on_desk.jpg",
+            info: "Vintage camera on desk"
+          },
+          {
+            title: "Tea set with steam rising",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/tea_set_with_steam.jpg",
+            info: "Tea set with steam rising"
+          },
+          {
+            title: "Apple and glass cup still life",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/apple_and_glass_still_life.jpg",
+            info: "Apple and glass cup still life"
+          },
+          {
+            title: "Ceramic vase with shadows",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/ceramic_vase_shadows.jpg",
+            info: "Ceramic vase with shadows"
+          },
+          {
+            title: "Forest clearing, morning fog",
+            file_path: "data/image_gallery/sketch/Objects and Still Life/forest_clearing_morning_fog.jpg",
+            info: "Forest clearing, morning fog"
+          }
+        ]
+      },
+      {
+        group_name: "Animals",
+        group_thumbnail_index: 0,
+        images: [
+          {
+            title: "Squirrel eating nut",
+            file_path: "data/image_gallery/sketch/Animals/squirrel_eating_nut.jpg",
+            info: "Squirrel eating nut"
+          },
+          {
+            title: "Elephant side profile, savanna",
+            file_path: "data/image_gallery/sketch/Animals/elephant_side_profile_savanna.jpg",
+            info: "Elephant side profile, savanna"
+          },
+          {
+            title: "Dog looking up, portrait view",
+            file_path: "data/image_gallery/sketch/Animals/dog_portrait_looking_up.jpg",
+            info: "Dog looking up, portrait view"
+          },
+          {
+            title: "Cat stretching",
+            file_path: "data/image_gallery/sketch/Animals/cat_stretching.jpg",
+            info: "Cat stretching"
+          },
+          {
+            title: "Cat sleeping in sunlight",
+            file_path: "data/image_gallery/sketch/Animals/cat_sleeping_sunlight.jpg",
+            info: "Cat sleeping in sunlight"
+          },
+          {
+            title: "Dog running across grass",
+            file_path: "data/image_gallery/sketch/Animals/dog_running_across_grass.jpg",
+            info: "Dog running across grass"
+          },
+          {
+            title: "Lion resting under tree",
+            file_path: "data/image_gallery/sketch/Animals/lion_resting_under_tree.jpg",
+            info: "Lion resting under tree"
+          }
+        ]
+      }
+    ]
+  },
+
+
+  {
+    group_name: "Realistic Pencil Drawings",
     group_thumbnail_index: 0,
     subgroups: [
       {
