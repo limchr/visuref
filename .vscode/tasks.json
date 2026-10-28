@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "debug-up",
+      "type": "shell",
+      "command": "docker compose -f docker-compose.yml -f docker-compose.debug.yml up --build -d && for i in $(seq 1 50); do if (echo >/dev/tcp/localhost/5680) >/dev/null 2>&1; then exit 0; fi; sleep 0.2; done; echo \"debugpy did not open port 5680\" >&2; exit 1",
+      "problemMatcher": []
+    },
+    {
+      "label": "debug-down",
+      "type": "shell",
+      "command": "docker compose -f docker-compose.yml -f docker-compose.debug.yml down",
+      "problemMatcher": []
+    }
+  ]
+}

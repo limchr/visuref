@@ -1,0 +1,14 @@
+[project]
+name = "visart-backend"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlmodel",
+    "psycopg[binary]",
+    "debugpy",
+]
+
+[tool.uv]
+package = false
