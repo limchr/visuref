@@ -4,13 +4,13 @@
     {
       "label": "debug-up",
       "type": "shell",
-      "command": "docker compose -f docker-compose.yml -f docker-compose.debug.yml up --build -d && for i in $(seq 1 50); do if (echo >/dev/tcp/localhost/5680) >/dev/null 2>&1; then exit 0; fi; sleep 0.2; done; echo \"debugpy did not open port 5680\" >&2; exit 1",
+      "command": "uv sync --directory backend && docker compose -f docker-compose.debug.yml up --build -d --remove-orphans && for i in $(seq 1 50); do if nc -z localhost 5678 >/dev/null 2>&1 && nc -z localhost 8080 >/dev/null 2>&1; then exit 0; fi; sleep 0.2; done; echo \"debug stack did not open ports 5678 and 8080\" >&2; exit 1",
       "problemMatcher": []
     },
     {
       "label": "debug-down",
       "type": "shell",
-      "command": "docker compose -f docker-compose.yml -f docker-compose.debug.yml down",
+      "command": "docker compose -f docker-compose.debug.yml down",
       "problemMatcher": []
     }
   ]

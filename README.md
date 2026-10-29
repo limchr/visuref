@@ -7,6 +7,8 @@ The concept of the website is:
 Future Tools: 
 - Draw in shapes like triangles, cones, rectangles, circles, lines
 - Flip image / rotate image 180 deg
+- Luminance value scale: reduce the image to a few lightness steps (3, 5, or 9), independent of hue
+- Color grading: 1. Convert sRGB to linear RGB. 2. Weight each pixel into shadows, midtones, and highlights by its luminance. 3. Apply lift to the shadows, gamma to the midtones, and gain to the highlights, per channel so each range takes its own hue. 4. Convert back to sRGB and output.
 
 2. There are free courses, each consist of multiple lectures. The lectures are acessible for free and the user can read about how to draw/paint and the course further links to the app for demonstrate certain concepts and to advertise it and user engagement and further experimentation using different settings / reference images.
 
@@ -38,7 +40,7 @@ Excercise: compose certain image in gallery with the right composition, any art 
 
 - Excercice: draw the sphere as acurate as you can, drop your image in the comment section for discussion
 
-4. Light, Shadow & Value 2
+4. Light, Shadow & Value: Multiple Objects
 
 - Multiple objects
 
@@ -47,7 +49,7 @@ Excercise: compose certain image in gallery with the right composition, any art 
 - Contrast and composition: how values guide the eye.
 - Exercises: draw spheres, cylinders, and cubes with light and shadow (all in reference gallery)
 
-5. Light, Shadow & Value 2
+5. Light, Shadow & Value: Simplifying Real Images
 
 Use Filter and Palette Tool for simplifying real images
 

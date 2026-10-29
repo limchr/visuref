@@ -13,31 +13,7 @@ services:
     working_dir: /usr/share/nginx/html
     ports:
       - "8080:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./frontend:/usr/share/nginx/html
-    depends_on:
-      - backend
-
-  backend:
-    environment:
-      DATABASE_URL: postgresql+psycopg://visart:visart@db:5432/visart
-    ports:
-      - "5680:5678"
-    volumes:
-      - ./backend:/app
-    command:
-      - python
-      - -m
-      - debugpy
-      - --listen
-      - 0.0.0.0:5678
-      - --wait-for-client
-      - -m
-      - uvicorn
-      - main:app
-      - --host
-      - 0.0.0.0
-      - --port
-      - "8000"
-    depends_on:
-      - db

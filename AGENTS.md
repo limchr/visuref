@@ -7,8 +7,8 @@ VisArt is a static art-study site plus a small API. The site asks how to see wha
 - `frontend/` is the static site. Debug runs it in nginx. The server uses the host nginx already installed on the machine.
 - `backend/main.py` is the FastAPI app. `backend/db.py` creates the SQLModel engine. Those are the only Python modules.
 - `docker-compose.yml` is the server stack.
-- `docker-compose.debug.yml` is the local debug difference.
-- `.vscode/launch.json` configuration `VisArt` starts the debug stack and attaches.
+- `docker-compose.debug.yml` is the local debug stack: Postgres and the frontend.
+- `.vscode/launch.json` configuration `VisArt` starts that stack and launches uvicorn in a terminal.
 - `image_process.py` is a local image-optimization script. It is not in either image.
 - `README.md`, `notes.md`, and `CNAME` stay at the repo root.
 - `backend/.venv` is the local uv environment and is gitignored.
@@ -35,17 +35,17 @@ Set `DATABASE_URL` when the host database name or credentials differ. The Compos
 
 In Cursor, start the launch configuration `VisArt`.
 
-That runs `docker compose -f docker-compose.yml -f docker-compose.debug.yml up --build -d`, waits until port 5680 is open, and attaches debugpy. `backend/` on the host is `/app` in the container. Stopping the session runs `docker compose -f docker-compose.yml -f docker-compose.debug.yml down`.
+That runs `uv sync --directory backend`, then `docker compose -f docker-compose.debug.yml up --build -d --remove-orphans`, and waits until ports 5678 and 8080 are open. It then starts uvicorn in the integrated terminal from `backend/.venv`. Stopping the session stops that process and runs `docker compose -f docker-compose.debug.yml down`.
 
-The debug stack also starts Postgres 16 (`visart` / `visart`, database `visart`) and the site on `http://127.0.0.1:8080`. The frontend container mounts `./frontend` at its document root and uses that directory as its working directory. Inside Compose the database is `db:5432`. On the host it is published as port 5678. Debugpy listens on port 5678 inside the API container and is published on host port 5680. Debug database files are ephemeral. The API process is:
+The debug Compose file starts Postgres 16 (`visart` / `visart`, database `visart`) and the site on `http://127.0.0.1:8080`. The frontend container mounts `./frontend` at its document root and uses that directory as its working directory. Postgres is published on the host as port 5678. Debug database files are ephemeral. The API process is:
 
-`python -m debugpy --listen 0.0.0.0:5678 --wait-for-client -m uvicorn main:app --host 0.0.0.0 --port 8000`
+`uvicorn main:app --host 0.0.0.0 --port 8764`
 
-Its database URL is:
+with:
 
-`postgresql+psycopg://visart:visart@db:5432/visart`
+`DATABASE_URL=postgresql+psycopg://visart:visart@127.0.0.1:5678/visart`
 
-`GET http://127.0.0.1:8080/api/health` is proxied to `GET /health`. The prefix is stripped. Direct `GET http://127.0.0.1:8764/health` remains available. Uvicorn starts after Cursor attaches, so `/health` answers after the debugger is connected.
+Uvicorn listens on all interfaces so the frontend container can reach it at `host.docker.internal:8764`. `GET http://127.0.0.1:8080/api/health` is proxied to `GET /health`. The prefix is stripped. Direct `GET http://127.0.0.1:8764/health` uses the same process. Leave port 8764 free of the server stack before starting this session.
 
 ## Server nginx
 
